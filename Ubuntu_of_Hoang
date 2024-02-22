@@ -1,6 +1,11 @@
 
 sudo apt update
 
+# Battery Charging Limit
+sudo -i
+cd /sys/class/power_supply/BAT0
+nano charge_control_end_threshold
+	89
 # Unikey
 sudo apt-get install ibus-unikey
 ibus restart
@@ -54,5 +59,15 @@ sudo nano /usr/share/applications/STS.desktop
 sudo apt install git
 git config --global user.email "hoang03.it@gmail.com"
 git config --global user.name "HHfguzje"
+##SSH key
+cd ~/.ssh
+ssh-keygen -t rsa -b 4096 -C "hoang03.it@gmail.com"
+eval $(ssh-agent -s)
+ssh-add
 
+# MySQL 
+
+# PostgreSQL
+
+# Docker
 
