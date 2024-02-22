@@ -1,0 +1,58 @@
+
+sudo apt update
+
+# Unikey
+sudo apt-get install ibus-unikey
+ibus restart
+
+# Jdk
+wget https://download.oracle.com/java/21/latest/jdk-21_linux-x64_bin.deb
+sudo dpkg -i jdk-21_linux-x64_bin.deb
+sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk-21-oracle-x64/bin/java 1
+sudo update-alternatives --install /usr/bin/javac javac /usr/lib/jvm/jdk-21-oracle-x64/bin/javac 1
+java -version 
+javac -version
+
+
+sudo update-alternatives --config java
+source /etc/environment 
+sudo gedit /etc/environment
+	JAVA_HOME="/usr/lib/jvm/jdk-21-oracle-x64/bin/java"
+echo $JAVA_HOME
+
+
+# Maven
+wget https://dlcdn.apache.org/maven/maven-3/3.9.6/binaries/apache-maven-3.9.6-bin.tar.gz
+tar -xvf apache-maven-3.9.6-bin.tar.gz
+sudo mv apache-maven-3.9.6 /opt/
+sudo chown -R $USER:$USER /opt/apache-maven-3.9.6
+nano ~/.bashrc
+	JAVA_HOME=/usr/lib/jvm/jdk-21-oracle-x64
+	MAVEN_HOME=/opt/apache-maven-3.9.6
+	export JAVA_HOME
+	PATH=$JAVA_HOME/bin:$MAVEN_HOME/bin:$PATH
+	export PATH
+. ~/.bashrc
+
+# Spring Tool Suite
+wget https://cdn.spring.io/spring-tools/release/STS4/4.21.1.RELEASE/dist/e4.30/spring-tool-suite-4-4.21.1.RELEASE-e4.30.0-linux.gtk.x86_64.tar.gz
+tar -xvf spring-tool-suite-4-4.21.1.RELEASE-e4.30.0-linux.gtk.x86_64.tar.gz
+sudo mv spring-tool-suite-4-4.21.1.RELEASE-e4.30.0-linux.gtk.x86_64 /opt/
+cd /opt/spring-tool-suite-4-4.21.1.RELEASE-e4.30.0-linux.gtk.x86_64
+sudo nano /usr/share/applications/STS.desktop
+	[Desktop Entry]
+	Name=SpringSource Tool Suite
+	Comment=Spring Tool Suite
+	Exec=/opt/spring-tool-suite-4-4.21.1.RELEASE-e4.30.0-linux.gtk.x86_64/sts-4.21.1.RELEASE/SpringToolSuite4
+	Icon=/opt/spring-tool-suite-4-4.21.1.RELEASE-e4.30.0-linux.gtk.x86_64/sts-4.21.1.RELEASE/icon.xpm
+	StartupNotify=true
+	Terminal=false
+	Type=Application
+	Categories=Development;IDE;Java;
+
+# Github
+sudo apt install git
+git config --global user.email "hoang03.it@gmail.com"
+git config --global user.name "HHfguzje"
+
+
